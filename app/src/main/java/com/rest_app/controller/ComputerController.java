@@ -2,6 +2,7 @@ package com.rest_app.controller;
 
 import com.rest_app.model.Computer;
 import com.rest_app.service.ComputerService;
+import com.rest_app.service.ExternalComputerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -11,12 +12,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
 @RestController
-@RequestMapping(value="/app")
+@RequestMapping(value="/rest")
 public class ComputerController {
     @Autowired
     private ComputerService computerService;
+    @Autowired
+    private ExternalComputerService externalComputerService;
 
-    @RequestMapping(value="computers", method= RequestMethod.GET)
+    @RequestMapping(value="computers", method=RequestMethod.GET)
     public ResponseEntity<Collection<Computer>> getComputers() {
         Collection<Computer> computers = computerService.findAll();
         return new ResponseEntity<>(computers, HttpStatus.OK);
@@ -46,5 +49,11 @@ public class ComputerController {
     public ResponseEntity<Computer> deleteComputer(@PathVariable("id") Long id) {
         computerService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @RequestMapping(value="external/computers", method=RequestMethod.GET)
+    public ResponseEntity<Collection<Computer>> getExternalComputers() {
+        Collection<Computer> computers = externalComputerService.findAllExternal();
+        return new ResponseEntity<>(computers, HttpStatus.OK);
     }
 }
