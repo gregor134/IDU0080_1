@@ -12,7 +12,9 @@ public class Computer {
     private Long id;
     private String make;
     private String model;
+    private String processor;
     private BigDecimal price;
+
 
     public Computer() {
 
@@ -38,6 +40,14 @@ public class Computer {
 
     public void setModel(String model) {
         this.model = model;
+    }
+
+    public String getProcessor() {
+        return processor;
+    }
+
+    public void setProcessor(String processor) {
+        this.processor = processor;
     }
 
     public BigDecimal getPrice() {

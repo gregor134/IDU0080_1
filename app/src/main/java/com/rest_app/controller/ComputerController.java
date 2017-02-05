@@ -32,7 +32,7 @@ public class ComputerController {
         return new ResponseEntity<>(computer, HttpStatus.OK);
     }
 
-    @RequestMapping(value="computers", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value="computers", method=RequestMethod.POST, consumes = "application/json")
     public ResponseEntity<Computer> createComputer(@RequestBody Computer computer) {
         Computer savedComputer = computerService.create(computer);
         return new ResponseEntity<>(savedComputer, HttpStatus.CREATED);

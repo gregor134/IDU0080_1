@@ -3,6 +3,7 @@ package com.rest_app.service;
 import com.rest_app.model.Computer;
 import com.rest_app.repository.ComputerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
@@ -14,8 +15,12 @@ public class ComputerServiceBean implements ComputerService {
 
     @Override
     public Collection<Computer> findAll() {
-        Collection<Computer> computers = computerRepository.findAll();
+        Collection<Computer> computers = computerRepository.findAll(sortByIdAsc());
         return computers;
+    }
+
+    private Sort sortByIdAsc() {
+        return new Sort(Sort.Direction.ASC, "id");
     }
 
     @Override
