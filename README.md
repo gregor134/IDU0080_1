@@ -1,7 +1,7 @@
 # IDU0080_01
-## Gregor Johannson
+Gregor Johannson
 
-### To make it work locally:
+## Running/installation:
 
 Create a postgres database with name "idu_0080" or change the appropriate values in both:
 * app/src/main/resources/application.properties
@@ -20,4 +20,4 @@ Then run the app.
 6. http://localhost:8090/rest/computers/search?processor=xxx - search by processor like ...
 
 ### SERVICE:
-1. localhost:8080/service/computers
+1. http://localhost:8080/service/computers
