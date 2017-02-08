@@ -1,7 +1,7 @@
 package com.rest_service.controller;
 
-import com.rest_app.model.Computer;
-import com.rest_app.service.ComputerService;
+import com.rest_service.model.Computer;
+import com.rest_service.service.ComputerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
