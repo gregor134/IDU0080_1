@@ -1,11 +1,10 @@
 # IDU0080_01
-Gregor Johannson
 
 ## Running/installation:
 
 Create a postgres database with name "idu_0080" or change the appropriate values in both:
 * app/src/main/resources/application.properties
-* app/src/main/resources/application.properties
+* service/src/main/resources/application.properties
 
 Run the service first to make it create the database tables.
 Then run the app.
@@ -21,3 +20,6 @@ Then run the app.
 
 ### SERVICE:
 1. http://localhost:8080/service/computers
+
+---
+Gregor Johannson
