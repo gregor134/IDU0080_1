@@ -17,36 +17,4 @@ public class ComputerServiceBean implements ComputerService {
         Collection<Computer> computers = computerRepository.findAll();
         return computers;
     }
-
-    /*@Override
-    public Computer find(Long id) {
-        Computer computer = computerRepository.findOne(id);
-        return computer;
-    }
-
-    @Override
-    public Computer create(Computer computer) {
-        if (computer.getId() != null) {
-            //Cannot create Computer with existing ID
-            return null;
-        }
-        Computer newComputer = computerRepository.save(computer);
-        return newComputer;
-    }
-
-    @Override
-    public Computer update(Computer computer) {
-        Computer existingComputer = computerRepository.findOne(computer.getId());
-        if (existingComputer == null) {
-            //Cannot update nonexistent Computer
-            return null;
-        }
-        Computer newComputer = computerRepository.save(computer);
-        return newComputer;
-    }
-
-    @Override
-    public void delete(Long id) {
-        computerRepository.delete(id);
-    }*/
 }

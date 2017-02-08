@@ -6,19 +6,21 @@ $(document).ready(function() {
     });
 
     $("#newComputer").submit(function(e) {
-        var data = {
-            'make': $('input[name="newMake"]').val(),
-            'model': $('input[name="newModel"]').val(),
-            'price': $('input[name="newPrice"]').val(),
-            'processor': $('input[name="newProcessor"]').val()
-        };
-        console.log(JSON.stringify(data));
+        e.preventDefault();
         $.ajax({
             url: '/rest/computers',
             type: 'POST',
-            data: JSON.stringify(data),
-            contentType: 'application/json',
             dataType: 'json',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            data: JSON.stringify({
+                "make": $('#newMake').val(),
+                "model": $('#newMoodel').val(),
+                "price": $('#newPrice').val(),
+                "processor": $('#newProcessor').val()
+            }),
             success: function() {
                 get_computers();
             }
@@ -72,7 +74,7 @@ function save_computer() {
 
 	var jsonData = JSON.stringify(computer_from_server);
 	$.ajax({
-		url: 'rest/computer/' + computer_from_server.id ,
+		url: 'rest/computers',
 		type: "PUT",
 		data: jsonData,
 		contentType: 'application/json',

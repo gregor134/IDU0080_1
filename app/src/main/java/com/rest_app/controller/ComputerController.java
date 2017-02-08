@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value="/rest")
@@ -25,6 +26,24 @@ public class ComputerController {
         return new ResponseEntity<>(computers, HttpStatus.OK);
     }
 
+    @RequestMapping(value="computers/search", method=RequestMethod.GET, params="make")
+    public ResponseEntity<Collection<Computer>> getComputersByMake(@RequestParam String make) {
+        Collection<Computer> computers = computerService.findByMakeLike(make+"%");
+        return new ResponseEntity<>(computers, HttpStatus.OK);
+    }
+
+    @RequestMapping(value="computers/search", method=RequestMethod.GET, params="model")
+    public ResponseEntity<Collection<Computer>> getComputersByModel(@RequestParam String model) {
+        Collection<Computer> computers = computerService.findByModelLike(model+"%");
+        return new ResponseEntity<>(computers, HttpStatus.OK);
+    }
+
+    @RequestMapping(value="computers/search", method=RequestMethod.GET, params="processor")
+    public ResponseEntity<Collection<Computer>> getComputersByProcessor(@RequestParam String processor) {
+        Collection<Computer> computers = computerService.findByProcessorLike(processor+"%");
+        return new ResponseEntity<>(computers, HttpStatus.OK);
+    }
+
     @RequestMapping(value="computer/{id}", method=RequestMethod.GET)
     public ResponseEntity<Computer> getComputer(@PathVariable("id") Long id) {
         Computer computer = computerService.find(id);
@@ -32,13 +51,13 @@ public class ComputerController {
         return new ResponseEntity<>(computer, HttpStatus.OK);
     }
 
-    @RequestMapping(value="computers", method=RequestMethod.POST, consumes = "application/json")
+    @RequestMapping(value="computers", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Computer> createComputer(@RequestBody Computer computer) {
         Computer savedComputer = computerService.create(computer);
         return new ResponseEntity<>(savedComputer, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value="computer/{id}", method=RequestMethod.PUT, consumes=MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value="computers", method=RequestMethod.PUT, consumes=MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Computer> updateComputer(@RequestBody Computer computer) {
         Computer updatedComputer = computerService.update(computer);
         if (updatedComputer == null) return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

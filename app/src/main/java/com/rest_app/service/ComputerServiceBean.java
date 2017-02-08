@@ -54,4 +54,22 @@ public class ComputerServiceBean implements ComputerService {
     public void delete(Long id) {
         computerRepository.delete(id);
     }
+
+    @Override
+    public Collection<Computer> findByMakeLike(String make) {
+        Collection<Computer> computersByMake = computerRepository.findByMakeLikeIgnoreCase(make);
+        return computersByMake;
+    }
+
+    @Override
+    public Collection<Computer> findByModelLike(String model) {
+        Collection<Computer> computersByModel = computerRepository.findByModelLikeIgnoreCase(model);
+        return computersByModel;
+    }
+
+    @Override
+    public Collection<Computer> findByProcessorLike(String processor) {
+        Collection<Computer> computersByProcessor = computerRepository.findByProcessorLikeIgnoreCase(processor);
+        return computersByProcessor;
+    }
 }

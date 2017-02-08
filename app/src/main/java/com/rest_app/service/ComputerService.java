@@ -10,4 +10,9 @@ public interface ComputerService {
     Computer create(Computer computer);
     Computer update(Computer computer);
     void delete(Long id);
+
+    Collection<Computer> findByMakeLike(String make);
+    Collection<Computer> findByModelLike(String model);
+    Collection<Computer> findByProcessorLike(String model);
+
 }
